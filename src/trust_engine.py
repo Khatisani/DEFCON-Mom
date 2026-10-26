@@ -7,37 +7,41 @@ MAX_SCORE: int = 100
 
 
 @dataclass(frozen=True)
-class TrustBreakdown:
-    starting_score: int
-    recency_delta: int
-    severity_delta: int
-    forgiveness_delta: int
-    raw_score: int
-    final_score: int
+class TrustAssessment:
+    score: int
+    plan: str
+    card_class: str
+    verdict: str
 
 
-def calculate_base_trust(
+def evaluate_plan(
+    plan: str,
     recency: InfractionRecency,
     severity: InfractionSeverity,
     forgiveness: ForgivenessStatus,
-    starting_score: int = DEFAULT_BASE_SCORE,
-) -> TrustBreakdown:
+    base_score: int = DEFAULT_BASE_SCORE,
+) -> TrustAssessment:
     """
-    Calculates the clamped base trust score (0-100) and returns an audit breakdown.
+    Calculates clamped final odds and returns the presentation-ready result.
     """
-    
+
     recency_delta = recency.value if severity != InfractionSeverity.NONE else 0
-    severity_delta = severity.value
-    forgiveness_delta = forgiveness.value
+    raw = base_score + recency_delta + severity.value + forgiveness.value
+    final_score = max(MIN_SCORE, min(MAX_SCORE, raw))
 
-    raw_score = starting_score + recency_delta + severity_delta + forgiveness_delta
-    final_score = max(MIN_SCORE, min(MAX_SCORE, raw_score))
+    if final_score >= 70:
+        card_class = "comic-green"
+        verdict = "Chances are high. Go ask right now before she finds something to be mad about."
+    elif final_score >= 40:
+        card_class = "comic-yellow"
+        verdict = "Risky 50/50. Sweep the kitchen or make her tea first."
+    else:
+        card_class = "comic-red"
+        verdict = f"Do not bring up '{plan}'. Stay in your room and stay quiet."
 
-    return TrustBreakdown(
-        starting_score=starting_score,
-        recency_delta=recency_delta,
-        severity_delta=severity_delta,
-        forgiveness_delta=forgiveness_delta,
-        raw_score=raw_score,
-        final_score=final_score,
+    return TrustAssessment(
+        score=final_score,
+        plan=plan,
+        card_class=card_class,
+        verdict=verdict,
     )
