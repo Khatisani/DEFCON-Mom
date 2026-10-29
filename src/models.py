@@ -46,7 +46,33 @@ class RecentFriction(Enum):
 
 class ChoreStatus(Enum):
     """
-    Domestic audit.
+    Domestic audit and status of chores.
     """
     CHORES_DONE = 20     
     CHORES_UNDONE = -40
+
+class CrowdFactor(Enum):
+    """
+    The people around you 
+    """
+    TRUSTED_ADULT = 30
+    ALL_GIRLS = 10
+    MIXED_GROUP = -20
+    UNKNOWN_BOYS = -45
+
+
+class AcademicStanding(Enum):
+    """
+    Academic factors such as very good report and poor performance 
+    """
+    RECENT_GOOD_MARKS = 20
+    UPCOMING_EXAM = -40
+    RECENT_BAD_MARKS = -40
+
+
+class LogisticsPlan(Enum):
+    """
+    Travelling safety
+    """
+    RIDE_ARRANGED_EARLY = 15
+    FIGURE_OUT_LATER = -35
