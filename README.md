@@ -25,5 +25,13 @@ This tool looks at where you stand with mom right now and gives you a percentage
 3. **Is she actually over it?**  
    Sometimes time has passed, but she is still giving you the cold shoulder and sighing loudly when you walk into the kitchen. If she is back to sending memes on WhatsApp, you're in the clear. If she is giving one-word answers, do not ask for anything.
 
+
+
+### Certain triggers bypass the math entirely:
+
+ - 1. Asking for permission right as she walks through the front door from work.
+- 2. An unwashed dish sitting in the sink while asking to go out.
+- 3. Unfinished school work with a test the following morning.
+
 ---
 
