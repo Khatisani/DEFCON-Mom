@@ -5,7 +5,7 @@ from models import (
     InfractionRecency,
     InfractionSeverity,
     MomEnergy,
-    RecentFriction,
+    RecentFriction
 )
 
 from trust_engine import evaluate_plan
@@ -257,6 +257,9 @@ with st.form("quick_check_form"):
                 recency=recency[1],
                 severity=severity[1],
                 forgiveness=forgiveness[1],
+                energy=energy[1],
+                friction=friction[1],
+                chores=chores[1],
             )
             st.session_state.assessment = assessment
             st.rerun()

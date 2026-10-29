@@ -41,7 +41,6 @@ class RecentFriction(Enum):
     """
     Did you clash recently?
     """
-
     NO_ARGUMENT = 0
     ARGUED_RECENTLY = -30  
 
@@ -49,6 +48,5 @@ class ChoreStatus(Enum):
     """
     Domestic audit.
     """
-    
     CHORES_DONE = 20     
     CHORES_UNDONE = -40
