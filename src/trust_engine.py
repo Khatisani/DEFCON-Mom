@@ -1,5 +1,7 @@
 from dataclasses import dataclass
-from models import InfractionRecency, InfractionSeverity, ForgivenessStatus
+from models import (InfractionRecency, InfractionSeverity, ForgivenessStatus
+                    , ChoreStatus, MomEnergy, RecentFriction
+)
 
 DEFAULT_BASE_SCORE: int = 50
 MIN_SCORE: int = 0
@@ -19,14 +21,26 @@ def evaluate_plan(
     recency: InfractionRecency,
     severity: InfractionSeverity,
     forgiveness: ForgivenessStatus,
+    energy: MomEnergy,
+    friction: RecentFriction,
+    chores: ChoreStatus,
     base_score: int = DEFAULT_BASE_SCORE,
 ) -> TrustAssessment:
     """
-    Calculates clamped final odds and returns the presentation-ready result.
+    Calculates clamped final odds and returns the result.
     """
 
     recency_delta = recency.value if severity != InfractionSeverity.NONE else 0
-    raw = base_score + recency_delta + severity.value + forgiveness.value
+    raw = (
+        base_score
+        + recency_delta
+        + severity.value
+        + forgiveness.value
+        + energy.value
+        + friction.value
+        + chores.value
+    )
+
     final_score = max(MIN_SCORE, min(MAX_SCORE, raw))
 
     if final_score >= 70:
@@ -34,7 +48,7 @@ def evaluate_plan(
         verdict = "Chances are high. Go ask right now before she finds something to be mad about."
     elif final_score >= 40:
         card_class = "comic-yellow"
-        verdict = "Risky 50/50. Sweep the kitchen or make her tea first."
+        verdict = "Risky 50/50. If chores are undone or she looks busy, fix that first."
     else:
         card_class = "comic-red"
         verdict = f"Do not bring up '{plan}'. Stay in your room and stay quiet."
