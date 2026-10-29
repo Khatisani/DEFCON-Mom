@@ -5,7 +5,10 @@ from models import (
     InfractionRecency,
     InfractionSeverity,
     MomEnergy,
-    RecentFriction
+    RecentFriction,
+    AcademicStanding,
+    CrowdFactor,
+    LogisticsPlan,
 )
 
 from trust_engine import evaluate_plan
