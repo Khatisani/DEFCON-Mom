@@ -14,6 +14,14 @@ This tool looks at where you stand with mom right now and gives you a percentage
 
 ---
 
+<p align="center">
+  <img src="assets/dashboard2.png" alt="DEFCON Mom Demo" width="550" />
+</p>
+
+<p align="center">
+  <img src="assets/dashboard1.png" alt="DEFCON Mom Demo" width="550" />
+</p>
+
 ## What it looks at (and why)
 
 ### 1. Your Track Record
