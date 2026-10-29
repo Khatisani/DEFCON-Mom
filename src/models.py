@@ -28,3 +28,27 @@ class ForgivenessStatus(Enum):
     ACTIVE_COLD_WAR = -30   
     CAUTIOUS_TRUCE = -10    
     FULL_AMNESTY = 25       
+
+class MomEnergy(Enum):
+    """
+    Mom's current workload and vibe.
+    """
+    CHILLING = 15     
+    STRESSED = -20  
+
+
+class RecentFriction(Enum):
+    """
+    Did you clash recently?
+    """
+
+    NO_ARGUMENT = 0
+    ARGUED_RECENTLY = -30  
+
+class ChoreStatus(Enum):
+    """
+    Domestic audit.
+    """
+    
+    CHORES_DONE = 20     
+    CHORES_UNDONE = -40
