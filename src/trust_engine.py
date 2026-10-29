@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from models import (InfractionRecency, InfractionSeverity, ForgivenessStatus
-                    , ChoreStatus, MomEnergy, RecentFriction
+                    , ChoreStatus, MomEnergy, RecentFriction,
+                    AcademicStanding, CrowdFactor, LogisticsPlan
 )
 
 DEFAULT_BASE_SCORE: int = 50
@@ -24,6 +25,9 @@ def evaluate_plan(
     energy: MomEnergy,
     friction: RecentFriction,
     chores: ChoreStatus,
+    crowd: CrowdFactor,
+    academics: AcademicStanding,
+    logistics: LogisticsPlan,
     base_score: int = DEFAULT_BASE_SCORE,
 ) -> TrustAssessment:
     """
@@ -39,6 +43,9 @@ def evaluate_plan(
         + energy.value
         + friction.value
         + chores.value
+        + crowd.value
+        + academics.value
+        + logistics.value
     )
 
     final_score = max(MIN_SCORE, min(MAX_SCORE, raw))
@@ -48,7 +55,7 @@ def evaluate_plan(
         verdict = "Chances are high. Go ask right now before she finds something to be mad about."
     elif final_score >= 40:
         card_class = "comic-yellow"
-        verdict = "Risky 50/50. If chores are undone or she looks busy, fix that first."
+        verdict = "Risky 50/50. If you don't have a guaranteed ride or your chores done, sort that out first."
     else:
         card_class = "comic-red"
         verdict = f"Do not bring up '{plan}'. Stay in your room and stay quiet."
