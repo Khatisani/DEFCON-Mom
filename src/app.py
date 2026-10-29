@@ -1,5 +1,13 @@
 import streamlit as st
-from models import ForgivenessStatus, InfractionRecency, InfractionSeverity
+from models import (
+    ChoreStatus,
+    ForgivenessStatus,
+    InfractionRecency,
+    InfractionSeverity,
+    MomEnergy,
+    RecentFriction,
+)
+
 from trust_engine import evaluate_plan
 
 st.set_page_config(page_title="DEFCON: Mom", layout="centered")
@@ -208,6 +216,33 @@ with st.form("quick_check_form"):
             ("Silent treatment and heavy sighs", ForgivenessStatus.ACTIVE_COLD_WAR),
             ("Talking, but suspicious", ForgivenessStatus.CAUTIOUS_TRUCE),
             ("Totally back to normal", ForgivenessStatus.FULL_AMNESTY),
+        ],
+        format_func=lambda x: x[0],
+    )
+
+    energy = st.radio(
+        "What is she doing right now?",
+        [
+            ("Relaxing / having tea or coffee", MomEnergy.CHILLING),
+            ("Busy / rushing / stressed out", MomEnergy.STRESSED),
+        ],
+        format_func=lambda x: x[0],
+    )
+
+    friction = st.radio(
+        "Did you two argue in the last 24 hours?",
+        [
+            ("No, peace in the house", RecentFriction.NO_ARGUMENT),
+            ("Yes, we clashed recently", RecentFriction.ARGUED_RECENTLY),
+        ],
+        format_func=lambda x: x[0],
+    )
+
+    chores = st.radio(
+        "What is the chore situation?",
+        [
+            ("Room is clean and chores are done", ChoreStatus.CHORES_DONE),
+            ("Chores are undone", ChoreStatus.CHORES_UNDONE),
         ],
         format_func=lambda x: x[0],
     )
