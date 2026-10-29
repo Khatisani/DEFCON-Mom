@@ -249,6 +249,35 @@ with st.form("quick_check_form"):
         ],
         format_func=lambda x: x[0],
     )
+    crowd = st.radio(
+        "Who is going?",
+        [
+            ("With a trusted adult", CrowdFactor.TRUSTED_ADULT),
+            ("All girls", CrowdFactor.ALL_GIRLS),
+            ("Mixed group: boys and girls", CrowdFactor.MIXED_GROUP),
+            ("Boys she doesn't know", CrowdFactor.UNKNOWN_BOYS),
+        ],
+        format_func=lambda x: x[0],
+    )
+
+    academics = st.radio(
+        "How are things looking at school?",
+        [
+            ("Good report card / marks recently", AcademicStanding.RECENT_GOOD_MARKS),
+            ("Big exam / test coming up", AcademicStanding.UPCOMING_EXAM),
+            ("Recent bad report card or test", AcademicStanding.RECENT_BAD_MARKS),
+        ],
+        format_func=lambda x: x[0],
+    )
+
+    logistics = st.radio(
+        "What is the ride situation?",
+        [
+            ("Safe ride arranged / early return", LogisticsPlan.RIDE_ARRANGED_EARLY),
+            ("I'll figure out a lift later", LogisticsPlan.FIGURE_OUT_LATER),
+        ],
+        format_func=lambda x: x[0],
+    )
 
     submitted = st.form_submit_button("Calculate Risk")
     if submitted:
@@ -263,6 +292,9 @@ with st.form("quick_check_form"):
                 energy=energy[1],
                 friction=friction[1],
                 chores=chores[1],
+                crowd=crowd[1],
+                academics=academics[1],
+                logistics=logistics[1],
             )
             st.session_state.assessment = assessment
             st.rerun()
