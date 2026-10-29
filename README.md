@@ -6,8 +6,6 @@ A simple calculator to tell you if you should ask mom for something right now or
 
 ## Why this exists
 
-My little sister has been acting up, but she still wants to ask for things. 
-
 Walking up to mom blindly is a bad idea. If mom is already irritated or you messed up yesterday, asking to go out will just get you yelled at. You need data before you make a move. 
 
 This tool looks at where you stand with mom right now and gives you a percentage chance so you know if it's safe to ask or if you should stay in your room.
